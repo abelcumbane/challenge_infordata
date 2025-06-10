@@ -31,8 +31,8 @@
 		}
 	
 		@Override
-		public void remove(Categorias categoria) {
-			// TODO Ainda por implementar
+		public void remove(Categorias categoria) { 
+			categoriaRepository.delete(categoria);
 			
 		}
 	
