@@ -80,7 +80,7 @@
 			
 			addProdutoButton.addClickListener(event ->openDialogAddProdutos());
 			
-			removeProdutoButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate("remover_produto")));
+			removeProdutoButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate("remover_produtos")));
 			
 			editProdutoButton.setEnabled(false);
 			grid.addSelectionListener(event -> {
