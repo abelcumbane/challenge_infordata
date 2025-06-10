@@ -32,7 +32,7 @@
 	
 		@Override
 		public void remove(Produtos produto) {
-			// TODO Ainda por implementar
+			produtoRepository.delete(produto);
 			
 		}
 	
