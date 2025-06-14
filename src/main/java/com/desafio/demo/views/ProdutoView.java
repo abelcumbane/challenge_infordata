@@ -47,7 +47,7 @@
 			this.produtoService = produtoService;
 	        
 			setSizeFull();
-	        setAlignItems(Alignment.CENTER); 
+	        setAlignItems(Alignment.START); 
 	        
 	        createFieldVariables();
 	        configuredGrid();
@@ -64,7 +64,7 @@
 		
 		private void configuredGrid() {
 			grid.setSizeFull();
-			grid.setColumns("nome","codigo");
+			grid.setColumns("codigo","nome");
 			
 		}
 		
@@ -92,7 +92,7 @@
 				
 				selectedProduto.ifPresentOrElse(
 						produto -> openDialogEditProdutos(produto), 
-				        () -> Notification.show("Nenhuma faculdade selecionada!")
+				        () -> Notification.show("Nenhum producto selecionado!")
 				    );
 			});
 			
