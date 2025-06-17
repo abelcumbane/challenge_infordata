@@ -14,7 +14,8 @@
 	import com.vaadin.flow.component.dialog.Dialog;
 	import com.vaadin.flow.component.grid.Grid;
 	import com.vaadin.flow.component.html.H1;
-	import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
 	import com.vaadin.flow.component.icon.VaadinIcon;
 	import com.vaadin.flow.component.notification.Notification;
 	import com.vaadin.flow.component.notification.NotificationVariant;
@@ -23,7 +24,9 @@
 	import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 	import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 	import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
-	import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.IntegerField;
+import com.vaadin.flow.component.textfield.NumberField;
+import com.vaadin.flow.component.textfield.TextField;
 	import com.vaadin.flow.data.binder.Binder;
 	import com.vaadin.flow.data.value.ValueChangeMode;
 	import com.vaadin.flow.router.Route;
@@ -64,9 +67,38 @@
 		
 		private void configuredGrid() {
 			grid.setSizeFull();
-			grid.setColumns("codigo","nome");
+			grid.setColumns("codigo","descricao","preco");
+			
+			grid.addComponentColumn(this::createDetailsButton).setHeader("Ações").setAutoWidth(true);
 			
 		}
+		
+		private void showProductDetailsDialog(Produtos produto) {
+		    Dialog dialog = new Dialog();
+		    dialog.setHeaderTitle("Detalhes do Produto");
+
+		    VerticalLayout layout = new VerticalLayout();
+		    layout.add(
+		        new Span("Código: " + produto.getCodigo()),
+		        new Span("Descrição: " + produto.getDescricao()),
+		        new Span("Preço: " + produto.getPreco()),
+		        new Span("Quantidade: " + produto.getQuantidade())
+		    );
+
+		    Button fechar = new Button("Fechar", e -> dialog.close());
+		    layout.add(fechar);
+
+		    dialog.add(layout);
+		    dialog.open();
+		}
+
+		
+		private Button createDetailsButton(Produtos produto) {
+		    Button detalhesBtn = new Button("Detalhes");
+		    detalhesBtn.addClickListener(e -> showProductDetailsDialog(produto));
+		    return detalhesBtn;
+		}
+
 		
 		private Component createToolbar() {
 			filterField.setPlaceholder("Pesquisar pelo nome");
@@ -77,6 +109,11 @@
 			Button addProdutoButton = new Button(new Icon(VaadinIcon.PLUS));
 			Button editProdutoButton = new Button(new Icon(VaadinIcon.EDIT));
 			Button removeProdutoButton = new Button(new Icon(VaadinIcon.TRASH));
+			
+			addProdutoButton.getStyle().set("background-color", "#28a745"); // Verde
+			addProdutoButton.getStyle().set("color", "white");
+			editProdutoButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);  // Cinza
+			removeProdutoButton.addThemeVariants(ButtonVariant.LUMO_ERROR);   // Vermelho
 			
 			addProdutoButton.addClickListener(event ->openDialogAddProdutos());
 			
@@ -111,15 +148,19 @@
 		    dialog.setCloseOnEsc(false);
 		    
 			Produtos novaProdutos = new Produtos();
-			TextField nomeField = new TextField("Nome do produto");
+			TextField nomeField = new TextField("Descricao do produto");
 			TextField codigoField = new TextField("Codigo");
+			NumberField precoField = new NumberField("Preco");
+			IntegerField quantidadeField = new IntegerField("Quantidade");
 	
 			nomeField.setWidth("90%");
 			nomeField.setHeight("50px"); 
 			
 			binder = new Binder<>(Produtos.class);
-			binder.forField(nomeField).asRequired("Nome é obrigatório ").bind(Produtos::getNome, Produtos::setNome);
+			binder.forField(nomeField).asRequired("Nome é obrigatório ").bind(Produtos::getDescricao, Produtos::setDescricao);
 			binder.forField(codigoField).bind(Produtos::getCodigo, Produtos::setCodigo);
+			binder.forField(precoField).bind(Produtos::getPreco, Produtos::setPreco);
+			binder.forField(quantidadeField).bind(Produtos::getQuantidade, Produtos::setQuantidade);
 			
 			Button saveButton = new Button("Salvar", event -> {
 				if (binder.writeBeanIfValid(novaProdutos)) {
@@ -141,7 +182,7 @@
 		    buttonLayout.setJustifyContentMode(JustifyContentMode.CENTER);
 		    buttonLayout.setWidthFull();
 			
-			dialog.add(new VerticalLayout(nomeField,codigoField,buttonLayout));
+			dialog.add(new VerticalLayout(nomeField,codigoField,precoField,quantidadeField,buttonLayout));
 			dialog.open();
 			
 		}
@@ -158,8 +199,13 @@
 	
 	    TextField nomeField = new TextField("Nome do Produto.");
 	    TextField codigoField = new TextField("Codigo do produto.");
-	    nomeField.setValue(produto.getNome()!= null ? produto.getNome(): ""); // Preenche com o nome atual
+	    NumberField precoField = new NumberField("Preco");
+		IntegerField quantidadeField = new IntegerField("Quantidade");
+	    
+	    nomeField.setValue(produto.getDescricao()!= null ? produto.getDescricao(): ""); // Preenche com o nome atual
 	    codigoField.setValue(produto.getCodigo()!= null ? produto.getCodigo(): "");
+	    precoField.setValue(produto.getPreco()!= null ? produto.getPreco(): 0.0);
+	    quantidadeField.setValue(produto.getQuantidade()!= null ? produto.getQuantidade(): 0);
 	    nomeField.setWidth("90%");
 	    nomeField.setHeight("50px"); 
 	
@@ -167,9 +213,11 @@
 	    binder = new Binder<>(Produtos.class);
 	    binder.forField(nomeField)
 	          .asRequired("Nome é obrigatório")
-	          .bind(Produtos::getNome, Produtos::setNome);
+	          .bind(Produtos::getDescricao, Produtos::setDescricao);
 	    
 	    binder.forField(codigoField).bind(Produtos::getCodigo, Produtos::setCodigo);
+	    binder.forField(precoField).bind(Produtos::getPreco, Produtos::setPreco);
+	    binder.forField(quantidadeField).bind(Produtos::getQuantidade, Produtos::setQuantidade);
 
 	
 	    binder.readBean(produto); // Preenche os campos com os dados atuais
@@ -193,7 +241,7 @@
 	    buttonLayout.setJustifyContentMode(JustifyContentMode.CENTER);
 	    buttonLayout.setWidthFull();
 	
-	    dialog.add(new VerticalLayout(nomeField, codigoField, buttonLayout));
+	    dialog.add(new VerticalLayout(nomeField, codigoField,precoField, quantidadeField, buttonLayout));
 	    dialog.open(); 
 		
 	}
