@@ -14,11 +14,19 @@
 	    private Long id;
 	
 		@Column
-	    private String nome;
-	
-		@Column
 	    private String codigo;
+		
+		@Column
+	    private String descricao;
+		
+		@Column
+		private Double preco;
+		
+		@Column
+		private Integer quantidade;
+		
 	    
+		
 	    
 	    public Produtos() {
 			
@@ -35,16 +43,36 @@
 		}
 	
 	
-		public String getNome() {
-			return nome;
+		public String getDescricao() {
+			return descricao;
 		}
 	
 	
-		public void setNome(String nome) {
-			this.nome = nome;
+		public void setDescricao(String descricao) {
+			this.descricao = descricao;
 		}
 	
 	
+		public Double  getPreco() {
+			return preco;
+		}
+
+
+		public void setPreco(Double preco) {
+			this.preco = preco;
+		}
+
+
+		public Integer getQuantidade() {
+			return quantidade;
+		}
+
+
+		public void setQuantidade(Integer quantidade) {
+			this.quantidade = quantidade;
+		}
+
+
 		public String getCodigo() {
 			return codigo;
 		}
@@ -53,7 +81,5 @@
 		public void setCodigo(String codigo) {
 			this.codigo = codigo;
 		}
-	    
-	    
-	    
+	        
 	}
