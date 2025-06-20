@@ -32,7 +32,7 @@ import com.vaadin.flow.component.textfield.TextField;
 	import com.vaadin.flow.router.Route;
 	
 	@Route(value = "produtos", layout = MainView.class)
-	public class ProdutoView extends VerticalLayout  {
+	public class ProdutoView extends VerticalLayout  { 
 		
 	
 		private ProdutoService produtoService;
@@ -91,7 +91,6 @@ import com.vaadin.flow.component.textfield.TextField;
 		    dialog.add(layout);
 		    dialog.open();
 		}
-
 		
 		private Button createDetailsButton(Produtos produto) {
 		    Button detalhesBtn = new Button("Detalhes");
@@ -99,6 +98,7 @@ import com.vaadin.flow.component.textfield.TextField;
 		    return detalhesBtn;
 		}
 
+		
 		
 		private Component createToolbar() {
 			filterField.setPlaceholder("Pesquisar pelo nome");
