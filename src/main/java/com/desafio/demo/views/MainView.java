@@ -146,10 +146,10 @@ import com.vaadin.flow.router.RouterLink;
 	        HorizontalLayout links = new HorizontalLayout(
 	            createDynamicLink("Produtos", ProdutoView.class),
 	            createDynamicLink("Clientes", ClienteView.class), // TODO::Falta criar as respectivas views
-	            createDynamicLink("Encomendas", EncomendaView.class),
-	            createDynamicLink("Internos", InternoView.class),
+	            createDynamicLink("Facturacao", EncomendaView.class),
 	            createDynamicLink("Fornecedores", FornecedorView.class),
-	            createDynamicLink("Compras", CompraView.class),
+	            //createDynamicLink("Internos", InternoView.class),
+	            //createDynamicLink("Compras", CompraView.class),
 	            createDynamicLink("Relatórios", CategoriaView.class)
 	        );
 	        links.setSpacing(true);
