@@ -145,8 +145,8 @@ import com.vaadin.flow.router.RouterLink;
 	        
 	        HorizontalLayout links = new HorizontalLayout(
 	            createDynamicLink("Produtos", ProdutoView.class),
-	            createDynamicLink("Clientes", ClienteView.class), // TODO::Falta criar as respectivas views
-	            createDynamicLink("Facturacao", EncomendaView.class),
+	            createDynamicLink("Clientes", ClientesView.class), // TODO::Falta criar as respectivas views
+	            createDynamicLink("Facturacao", FacturacaoView.class),
 	            createDynamicLink("Fornecedores", FornecedorView.class),
 	            //createDynamicLink("Internos", InternoView.class),
 	            //createDynamicLink("Compras", CompraView.class),
