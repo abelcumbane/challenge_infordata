@@ -11,13 +11,13 @@ public class Clientes {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column
 	private String nome;
 	
 	@Column
-	private Integer nuit;
+	private String nuit;
 	
 	@Column
 	private String telfone;
@@ -29,19 +29,19 @@ public class Clientes {
 	private String endereco;
 	
 	@Column
-	private boolean estado;
+	private String estado;
 	
 	
 	public Clientes() {
 	}
 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -56,12 +56,12 @@ public class Clientes {
 	}
 
 
-	public Integer getNuit() {
+	public String getNuit() {
 		return nuit;
 	}
 
 
-	public void setNuit(Integer nuit) {
+	public void setNuit(String nuit) {
 		this.nuit = nuit;
 	}
 
@@ -96,12 +96,12 @@ public class Clientes {
 	}
 
 
-	public boolean isEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
 
-	public void setEstado(boolean estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	
