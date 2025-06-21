@@ -14,22 +14,26 @@ public class Facturacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String numero;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Clientes cliente;
 
+    @Column
     private LocalDateTime dataEmissao;
 
     @OneToMany(mappedBy = "fatura", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FaturaProduto> itens;
 
+    @Column
     private BigDecimal total;
 
     @Enumerated(EnumType.STRING)
     private EstadoFatura estado;
 
+    @Column
     private String observacoes;
     
     public Facturacao() {
