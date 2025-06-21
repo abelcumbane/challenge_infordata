@@ -16,7 +16,7 @@ public class FaturaProduto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@ManyToOne
     @JoinColumn(name = "produto_id")
@@ -28,12 +28,12 @@ public class FaturaProduto {
 	@Column
 	private BigDecimal precoUnitario;
 	
-	@Column
+	@Column 
 	private BigDecimal subtotal;
 	
 	@ManyToOne
 	@JoinColumn(name = "facturacao_id")
-	private Facturacao fatura;
+	private Facturacao fatura; 
 
 
 	public FaturaProduto() {
@@ -43,12 +43,12 @@ public class FaturaProduto {
 	
 	
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
