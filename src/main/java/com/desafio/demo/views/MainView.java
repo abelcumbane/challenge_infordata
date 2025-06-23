@@ -147,8 +147,8 @@ import com.vaadin.flow.router.RouterLink;
 	            createDynamicLink("Produtos", ProdutoView.class),
 	            createDynamicLink("Clientes", ClientesView.class), // TODO::Falta criar as respectivas views
 	            createDynamicLink("Facturacao", FacturacaoView.class),
+	            createDynamicLink("Facturas", FacturacaoListView .class),
 	            createDynamicLink("Fornecedores", FornecedorView.class),
-	            //createDynamicLink("Internos", InternoView.class),
 	            //createDynamicLink("Compras", CompraView.class),
 	            createDynamicLink("Relatórios", CategoriaView.class)
 	        );
