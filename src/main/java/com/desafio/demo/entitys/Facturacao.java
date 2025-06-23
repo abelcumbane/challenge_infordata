@@ -1,7 +1,7 @@
 package com.desafio.demo.entitys;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,13 +22,13 @@ public class Facturacao {
     private Clientes cliente;
 
     @Column
-    private LocalDateTime dataEmissao;
+    private LocalDate dataEmissao;
 
     @OneToMany(mappedBy = "fatura", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FaturaProduto> itens;
 
     @Column
-    private BigDecimal total;
+    private Double total;
 
     @Enumerated(EnumType.STRING)
     private EstadoFatura estado;
@@ -64,11 +64,11 @@ public class Facturacao {
 		this.cliente = cliente;
 	}
 
-	public LocalDateTime getDataEmissao() {
+	public LocalDate getDataEmissao() {
 		return dataEmissao;
 	}
 
-	public void setDataEmissao(LocalDateTime dataEmissao) {
+	public void setDataEmissao(LocalDate dataEmissao) {
 		this.dataEmissao = dataEmissao;
 	}
 
@@ -80,11 +80,11 @@ public class Facturacao {
 		this.itens = itens;
 	}
 
-	public BigDecimal getTotal() {
+	public Double getTotal() {
 		return total;
 	}
 
-	public void setTotal(BigDecimal total) {
+	public void setTotal(Double total) {
 		this.total = total;
 	}
 
