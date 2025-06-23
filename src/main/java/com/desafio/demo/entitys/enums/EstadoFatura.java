@@ -4,5 +4,7 @@ public enum EstadoFatura {
 	PENDENTE,
     PAGA,
     PARCIAL,
+    EMITIDA,
     CANCELADA
+    
 }
