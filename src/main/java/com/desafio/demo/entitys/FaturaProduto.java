@@ -1,7 +1,5 @@
 package com.desafio.demo.entitys;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,10 +24,10 @@ public class FaturaProduto {
 	private int quantidade;
 	
 	@Column
-	private BigDecimal precoUnitario;
+	private Double precoUnitario;
 	
 	@Column 
-	private BigDecimal subtotal;
+	private Double subtotal;
 	
 	@ManyToOne
 	@JoinColumn(name = "facturacao_id")
@@ -73,22 +71,22 @@ public class FaturaProduto {
 	}
 
 
-	public BigDecimal getPrecoUnitario() {
+	public Double getPrecoUnitario() {
 		return precoUnitario;
 	}
 
 
-	public void setPrecoUnitario(BigDecimal precoUnitario) {
+	public void setPrecoUnitario(Double precoUnitario) {
 		this.precoUnitario = precoUnitario;
 	}
 
 
-	public BigDecimal getSubtotal() {
+	public Double getSubtotal() {
 		return subtotal;
 	}
 
 
-	public void setSubtotal(BigDecimal subtotal) {
+	public void setSubtotal(Double subtotal) {
 		this.subtotal = subtotal;
 	}
 
