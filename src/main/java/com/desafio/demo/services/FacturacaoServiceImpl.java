@@ -54,8 +54,7 @@ public class FacturacaoServiceImpl implements FacturacaoService{
 
 	@Override
 	public long countFacturacao() {
-		// TODO Auto-generated method stub
-		return 0;
+		return facturacaoRepository.count();
 	}
 
 	@Override
